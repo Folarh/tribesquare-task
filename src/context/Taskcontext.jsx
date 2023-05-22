@@ -1,4 +1,4 @@
-import { createContext, useEffect, useReducer } from "react";
+import { createContext, useEffect, useReducer, useState } from "react";
 
 const initialState = {
   tasks: [],
@@ -30,6 +30,7 @@ const taskReducer = (state, action) => {
 };
 
 export const TaskProvider = ({ children }) => {
+  // dispatch function
   const [state, dispatch] = useReducer(
     taskReducer,
     JSON.parse(localStorage.getItem("save-task")) || initialState

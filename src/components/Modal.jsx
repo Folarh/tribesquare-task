@@ -1,7 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useTaskContext } from "../hooks/useTasks";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 export default function Modal({ modal, setModal }) {
+  useEffect(() => {
+    AOS.init();
+  }, []);
   const [title, setTitle] = useState("");
   const [status, setStatus] = useState("not-ncompleted");
   const { addTask, editTask } = useTaskContext();
@@ -26,7 +31,7 @@ export default function Modal({ modal, setModal }) {
     <>
       {modal && (
         <div className="modal-backdrop">
-          <div className="modal">
+          <div className="modal" data-aos="slide-up">
             <form onSubmit={handleSubmit}>
               <label>
                 <input
